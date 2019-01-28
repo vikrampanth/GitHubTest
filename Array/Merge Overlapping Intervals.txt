@@ -1,0 +1,28 @@
+//First sort the Intervals on basis of starting number (Increasing/decreasing)
+//Input - {1, 7} {2, 4} {4, 7} {9, 10} 
+//Output - 1 7
+// 		9 10
+
+	public static void main (String[] args) {
+		//code
+        int arr[][] = { {1,7}, {2,4}, {4,7}, {9,10} };
+        int n = arr.length;
+        int index=0;
+        // heapify(arr, n, 0);
+        printArr(arr);
+        // sortHeap(arr, arr.length);
+        for(int i=0; i<n;i++){
+            if(index != 0  && arr[index-1][1] >  arr[i][0]){
+                arr[index-1][0] = Min(arr[index-1][0] , arr[i][0]);
+                arr[index-1][1] = Max(arr[index-1][1] , arr[i][1]);
+                index--;
+            }else{
+                arr[index][0] = arr[i][0];
+                arr[index][1] = arr[i][1];
+            }
+            index++;
+        }
+        for(int i=0; i<index;i++){
+            System.out.println(arr[i][0] + " "+arr[i][1]);
+        }
+	}

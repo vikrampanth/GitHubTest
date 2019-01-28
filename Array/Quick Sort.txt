@@ -1,0 +1,16 @@
+
+	static void printLargestQuickSort(int arr[], int low, int high){
+        if(low < high){
+            int s=1, key=arr[high];
+            for(int i=1;i<high;i++){  //not equal to n, as in recurssion value of s will not decrease , if all values are smaller than nth element
+                if(arr[i] < key ){
+                    swap(arr, i, s);
+                    s++;
+                }
+            }
+            swap(arr, s, high);
+            // printArr(arr);
+            printLargestQuickSort(arr, 1, s-1);
+            printLargestQuickSort(arr, s+1, high);
+        }
+    }

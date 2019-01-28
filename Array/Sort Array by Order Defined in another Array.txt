@@ -1,0 +1,35 @@
+//Input: A1[] = {2, 1, 2, 5, 7, 1, 9, 3, 6, 8, 8}
+//       A2[] = {2, 1, 8, 3}
+//Output: A1[] = {2, 2, 1, 1, 8, 8, 3, 5, 6, 7, 9}    
+//Own Code	
+	static void sortAccording(int arr1[], int n1, int arr2[], int n2){
+        int temp[]=new int[n1];
+        int visited[]=new int[n1];
+        for(int i=0; i< n1; i++){
+            temp[i]=arr1[i];
+            visited[i]=0;
+        }
+        Arrays.sort(temp);
+        int len=0;
+        for(int i=0; i< n2 ; i++){
+            len = copy(temp, arr1, n1, arr2[i], len, visited);
+        }
+        for(int i=0; i< n1 ; i++){
+            if(visited[i] != 1 ){
+                arr1[len]=temp[i];
+                len++;
+            }
+        }
+    }
+    static int copy(int temp[], int arr1[], int n, int key, int len, int visited[]){
+        for(int i=0;i<n;i++){
+            if(temp[i] == key){
+                arr1[len]=key;
+                visited[i]=1;
+                len++;
+            }else if(temp[i] > key){
+                break;
+            }
+        }
+        return len;
+    }

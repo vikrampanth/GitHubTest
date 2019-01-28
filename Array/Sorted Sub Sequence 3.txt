@@ -1,0 +1,38 @@
+// { 12, 11, 10, 5, 6, 2, 30 } ;
+
+    static void sortedSubSequence3(int arr[], int n){
+        int inc[]=new int[n];
+        int dec[]=new int[n];
+        inc[0]=-1;
+        dec[n-1]=-1;
+        int min=0, max=n-1;
+        for(int i=1;i<n;i++){
+            if(arr[i] <=arr[min]){
+                inc[i]=-1;
+                min=i;
+            }else{
+                inc[i]=min;
+            }
+        }
+        printArr(inc);
+        
+        for(int i=n-2;i>=0;i--){
+            if(arr[i] >= arr[max]){
+                dec[i]=-1;
+                max=i;
+            }else{
+                dec[i]=max;
+            }
+        }
+        printArr(dec);
+
+        for (int i = 0; i < n; i++)
+        {
+            if (inc[i] != -1 && dec[i] != -1)
+            {
+                System.out.println(arr[inc[i]]+" "+ arr[i]+" "+ arr[dec[i]]);
+                return;
+            }
+        }
+        System.out.println("No triplet exists");
+    }

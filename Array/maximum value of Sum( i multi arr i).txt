@@ -1,0 +1,16 @@
+    static int maxSumMulti(int arr[], int n){
+        int maxSum=0,currValue=0, arrSum=0;
+        for(int i=0;i<n;i++){
+            currValue+=i*arr[i];
+            arrSum+=arr[i];
+        }
+        maxSum=currValue;
+        System.out.println("Intermediate Sum - "+maxSum);
+        for(int j=1;j<n;j++){
+            currValue=currValue+arrSum-n*arr[n-j];
+            System.out.println("Current Sum - "+currValue+", j = "+j);
+            if(maxSum<currValue)
+                maxSum=currValue;
+        }
+        return maxSum;
+    }

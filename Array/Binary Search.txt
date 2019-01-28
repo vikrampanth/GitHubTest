@@ -1,0 +1,13 @@
+    static void binarySearch(int arr[], int low, int high, int key){
+        // printArr(arr);
+        // System.out.println("low = "+low+", high = "+high );
+        int mid=(low+high)/2;
+        if(arr[mid]== key){
+            System.out.println("Search Success, i = "+mid);
+            return;
+        }
+        if(arr[mid]>key)
+            binarySearch(arr,low, mid-1, key);
+        else
+            binarySearch(arr, mid+1, high, key);
+    }

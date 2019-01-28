@@ -1,0 +1,42 @@
+// Input
+//        int A[] = {10, 15, 25};
+//        int B[] = {5, 20, 30};
+//Output
+// 10 20 
+// 10 20 25 30 
+// 10 30 
+// 15 20 
+// 15 20 25 30 
+// 15 30 
+// 25 30 
+
+    static void generate(int A[], int B[], int nA, int nB ) {
+        int C[]= new int [nA+nB];
+        generateUtil(A, B, C, 0, 0 , nA , nB, 0, true);
+    }
+    static void generateUtil(int A[], int B[], int C[], int i, int j,  int nA, int nB, int len, boolean flag ){
+        if(flag){
+            if(len != 0)
+                printArrElement(C, len+1);
+
+            for (int l = i; l < nA; l++){
+                if(len == 0 ){
+                    C[len]=A[l];
+                    generateUtil(A, B, C, ++i, j , nA , nB, len, !flag);
+                }
+                if(C[len] < A[l]) {
+                    C[len+1] = A[l];
+                    generateUtil(A, B, C, ++i, j , nA , nB, len+1, !flag);
+                }else{
+                    
+                }
+            }
+        }else{
+            for (int l = j; l < nB; l++){
+                if(C[len] < B[l]) {
+                    C[len+1] = B[l];
+                    generateUtil(A, B, C, i, ++j , nA , nB, len+1, !flag);
+                }
+            }
+        }
+    }

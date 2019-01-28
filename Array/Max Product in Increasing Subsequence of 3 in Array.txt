@@ -1,0 +1,40 @@
+Input: 
+arr[] = {6, 7, 8, 1, 2, 3, 9, 10} 
+Output: 
+8 9 10
+
+Input: 
+arr[] = {1, 5, 10, 8, 9}
+Output: 5 8 9
+
+	static int maxProductIncreasingSequence3(int arr[], int n ) {
+	    int max=0;
+	    int maxElement=arr[0];
+        int LSL[] = new int[n]; LSL[0] = -1;
+        for(int i=1; i<n; i++){
+            int temp=arr[i];
+            LSL[i]=maxElement;
+
+            if(maxElement < arr[i])
+                maxElement = arr[i];
+        }
+        printArr(LSL);
+        int LGR[] = new int[n]; LGR[n-1] = -1;
+        maxElement=arr[n-1];
+        for(int i=n-2; i>=0; i--){
+            int temp=arr[i];
+            LGR[i]=maxElement;
+
+            if(maxElement < arr[i])
+                maxElement = arr[i];
+        }
+        printArr(LGR);
+        for(int i=n-1; i>=0; i--){
+            if(LSL[i] == -1 || LGR[i] == -1)
+                continue;
+            
+            return LSL[i]*arr[i]*LGR[i];
+            
+        }
+        return max;
+    }

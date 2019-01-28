@@ -1,0 +1,51 @@
+import java.io.*;
+import java.util.Arrays;
+
+class GFG {
+	public static void main (String[] args) {
+		//code
+        int d=3;
+		int[] arr={1,2,3,4,5,6,7,8,9,10,11,12,13,14};
+		rotate(arr,d, arr.length );
+		printArr(arr);
+	}
+	static void printArr(int arr[]){
+        int len=arr.length;
+        for(int i=0;i<len;i++){
+    		System.out.print(arr[i]+" ");
+		}	
+		System.out.println("");
+	}
+	static void rotate(int arr[], int d, int n){
+        System.out.println("n - "+n+", d - "+d+", n-d - "+(n-d));
+        if(d == 0 || d == n)
+                return;
+        if(n-d == d)
+          {
+            swap(arr, 0, n-d, d);   
+            return;
+          }  
+             
+         /* If A is shorter*/             
+          if(d < n-d)
+          {  
+            swap(arr, 0, n-d, d);
+            printArr(arr);
+            rotate(arr, d, n-d);    
+          }    
+          else /* If B is shorter*/             
+          {
+            swap(arr, 0, d, n-d);
+            printArr(arr);
+            rotate(Arrays.copyOfRange(arr, n-d, n), 2*d-n, d); /*This is tricky*/
+          }              
+	}
+	static void swap(int arr[], int d1, int d2, int d){
+	    int i;
+	    for(i=0;i<d;i++){
+	        int tmp=arr[d1+i];
+	        arr[d1+i]=arr[d2+i];
+	        arr[d2+i]=tmp;
+	    }
+	}
+}

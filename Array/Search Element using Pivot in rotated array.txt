@@ -1,0 +1,26 @@
+    static void search(int arr[], int n, int key){
+	    int pivot=findPivot(arr, 0, n , key);
+	    System.out.println("Search Success, pivot = "+pivot);
+	    if(pivot == -1){
+	        binarySearch(arr, 0, n, key);
+	    }else{
+	        if(arr[n-1]>key)
+	            binarySearch(arr, pivot, n, key);
+	        else
+	            binarySearch(arr, 0, pivot-1, key);
+	    }
+	}
+    static int findPivot(int arr[], int low, int high, int key){
+        int mid=(low+high)/2;
+        if(arr[mid]<arr[mid-1]){
+            return mid;
+        }
+        int flag=-1;
+        if(arr[mid] < arr[low]){
+            flag=findPivot(arr,low+1, mid-1, key);
+        }
+        else if(arr[mid] > arr[high-1]){
+            flag=findPivot(arr, mid+1, high-1, key);
+        }
+        return flag;
+    }

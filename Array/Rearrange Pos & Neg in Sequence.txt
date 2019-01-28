@@ -1,0 +1,41 @@
+//Insertion sort
+    static void rearrangePosNegSequence(int arr[], int n){
+        for(int i=1;i<n;i++){
+            if(arr[i]<0){
+                int num=arr[i], j;
+                for(j=i-1;j>0 && arr[j]>0;j--){
+                    arr[j+1]=arr[j];
+                }
+                arr[j+1]=num;
+            }
+        }
+    }
+
+//Merge Sort
+Use Merge sort, with some changes in merge function conditions
+
+//Merge sort without temp array
+    static void mergeSort(int arr[], int l, int n){
+        if(l<n){
+            int mid=(l+n)/2;
+            mergeSort(arr, l, mid);
+            mergeSort(arr, mid+1, n);
+            merge(arr, l, mid, n);
+        }
+    }
+    static void merge(int arr[], int l, int m, int n){
+        int i=l, j=m+1;
+        while(i<=m && arr[i]<0)
+            i++;
+        while(j<=n && arr[j]<0)
+            j++;
+        reverse(arr, i, m);
+        reverse(arr, m+1, j-1);
+        reverse(arr, i, j-1);
+    }
+    static void reverse(int arr[], int l, int n){
+        if(l<n){
+            swap(arr, l, n);
+            reverse(arr, ++l, --n);
+        }
+    }

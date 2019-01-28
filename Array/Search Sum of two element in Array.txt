@@ -1,0 +1,32 @@
+	static int searchSum(int arr[], int n, int sum){
+	    if(sum<arr[0])
+	        return -1;
+	    int low=0, high=n-1;
+	    for(int i=0;i<high;i++){
+    	    if(arr[low]+arr[high] == sum){
+                    System.out.println("Index - "+low+", "+high);
+    	            return 1;
+    	    }else if(arr[low]+arr[high] < sum)
+                low++;
+    	    else
+    	        high--;
+	    }
+	    return -1;
+	}
+
+	//Using Recurrsion
+	static int searchSum(int arr[], int low, int high, int sum){
+	    System.out.println("Index - "+low+", "+high);
+	    if(sum<arr[low])
+	        return -1;
+    	if(arr[low]+arr[high] == sum){
+            System.out.println("Index - "+low+", "+high);
+    	    return 1;
+    	}else if(arr[low]+arr[high] < sum){
+            low++;
+            return searchSum(arr,low, high , sum);
+    	}else{
+    	    high--;
+            return searchSum(arr,low, high, sum);
+    	}
+	}

@@ -1,0 +1,22 @@
+	static int maxCircularSubArrSum(int arr[], int n) {
+	    int maxKandane=kandane(arr, arr.length);
+	    int sumWrap=0;
+	    for(int i=0; i<n; i++){
+            sumWrap+=arr[i];
+            arr[i]=-arr[i];
+	    }
+	    int maxKandaneWrap=kandane(arr, arr.length);
+	    int maxWrap=sumWrap  + maxKandaneWrap;
+	    return (maxWrap > maxKandane) ? maxWrap : maxKandane;
+	}
+	static int kandane(int arr[], int n) {
+	    int max=0, interMax=0;
+	    for(int i=0; i<n; i++){
+	        interMax+=arr[i];
+	        if(max < interMax)
+	            max=interMax;
+	        if(interMax < 0)
+	            interMax=0;
+	    }
+	    return max;
+	}

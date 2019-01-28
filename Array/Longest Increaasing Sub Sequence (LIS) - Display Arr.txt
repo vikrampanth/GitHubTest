@@ -1,0 +1,41 @@
+    static int longestIncreasingSubsequence(int arr[], int n) {
+        int len=0;
+        int temp1[]=new int[n]; temp1[0] = 0;
+        int[] temp2=new int[n]; temp2[0] =-1;
+        for(int i=1; i< n ; i++){
+            if(arr[i] < arr[temp1[0]]){
+                temp1[0]=i;
+            }else if(arr[i] > arr[temp1[len]]){
+                temp2[i]=temp1[len];
+                len++;
+                temp1[len]=i;
+            }else{
+				for(int j=0;j<=len;j++){
+					if(arr[temp1[j]] > arr[i]){
+                        temp2[i]=temp1[j-1];
+                        temp1[j]=i;
+						break;
+                    }
+                }
+				// or call function
+                int pos= CeilIndex(arr, temp1, -1, len, arr[i]);
+                temp2[i]=temp1[pos-1];
+                temp1[pos]=i;
+            }
+        }
+        for(int i=temp1[len];i >=0 ; i= temp2[i])
+            System.out.print(arr[i]+" ");
+        return len+1;
+    }
+    static int CeilIndex(int arr[], int temp[], int l, int r, int key)
+    {
+        while (r - l > 1)
+        {
+            int m = l + (r - l)/2;
+            if (arr[temp[m]] >= key)
+                r = m;
+            else
+                l = m;
+        }
+        return r;
+    }

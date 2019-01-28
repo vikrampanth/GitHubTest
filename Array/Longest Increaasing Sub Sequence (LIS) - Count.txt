@@ -1,0 +1,34 @@
+	static int longestIncreasingSubsequenceOne(int arr[], int n) {
+	    int temp[]=new int[n]; temp[0]=arr[0];
+	    int len=0;
+        for(int i=1;i<n;i++){
+            if(arr[i] < temp[0]){
+                temp[0]=arr[i];
+            }else if(arr[i] > temp[len]){
+                len++;
+                temp[len]=arr[i];
+            }else{
+				int pos = CeilIndexOwn(temp, -1, len, arr[i]);
+                temp[pos] = arr[i];
+				// Or you can write a for loop instead of calling the fucntion
+				for(int j=0;j<=len;j++){
+                    if(temp[j] > arr[i]){
+                        temp[j]=arr[i];
+                        break;
+                    }
+                }
+
+            }
+        }
+        return len+1;
+	}
+	static int CeilIndexOwn(int temp[], int l, int r, int key){
+        while( r - l > 1){
+            int mid = l + (r-l)/2;
+            if(temp[mid] >= key)
+                r=mid;
+            else
+                l=mid;
+        }
+        return r;
+	}

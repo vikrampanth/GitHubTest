@@ -1,0 +1,30 @@
+//Recurssion
+    static void insertionSort(int arr[], int l, int n){
+        if(l<n){
+            int key=arr[l]; 
+            for(int j=0;j<l;j++){
+                if(arr[j]>key){
+                    for(int i=l;i>0;i--){
+                        arr[i]=arr[i-1];
+                    }
+                    arr[j]=key;
+                    break;
+                }
+            }
+            insertionSort(arr, l+1, n);
+        }
+    }
+	
+//Normal
+    static void insertionSort(int arr[], int n){
+        for(int i=1;i<n;i++){
+            int key=arr[i]; 
+            int j=i-1; 
+            while(j>=0 && arr[j] > key){
+                arr[j+1]=arr[j];
+                j--;
+            }
+            arr[j+1]=key;
+        }
+    }	
+	

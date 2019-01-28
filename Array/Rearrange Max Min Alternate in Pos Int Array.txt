@@ -1,0 +1,18 @@
+//Using Insert sort method
+    static void rearrangeMaxMinAlternate(int arr[], int l, int n){
+        if(l<n){
+            int key=arr[n];
+            for(int i=n;i>l;i--){
+                arr[i]=arr[i-1];
+            }
+            arr[l]=key;
+            rearrangeMaxMinAlternate(arr, l+2, n);
+        }
+    }
+	
+//simple approach with extra space
+for loop i
+i is even, put last element --
+i is odd, put start element ++
+temp array
+	
